@@ -1,4 +1,30 @@
-### 4.7.4 (2020-01-08)
+### 5.0.0 (2020-02-18)
+
+* add extended context for MeSH authority
+* add Ligatus authority
+* add CERL authority
+* update to LD4P/qa_server 6.2.0
+  * use authentication for refreshing monitor tests
+  * add performance cache logger
+  * exceeding max performance cache size flushing the cache
+  * change historical summary to show number of days instead of number of tests
+
+### 4.8.0 (2020-02-13)
+
+* update to LD4P/qa_server 6.0.0
+  * refactor to avoid errors and improve performance of monitor status page
+
+### 4.7.6 (2020-01-30)
+
+* update to LD4P/qa_server 5.5.1
+  * bugfix - check for nil before calling .each
+
+### 4.7.5 (2020-01-10)
+
+* update to LD4P/qa_server 5.5.0
+  * use caching with expiry for all data on monitor status page
+
+### 4.7.4 (2020-01-07)
 
 * update to LD4P/qa_server 5.4.0
   * updates expiration time for tests and calculations
