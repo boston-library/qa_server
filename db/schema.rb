@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 20200220173340) do
   enable_extension "plpgsql"
 
   create_table "bpldc_authorities", force: :cascade do |t|
-    t.string "label"
-    t.string "code"
+    t.string "name"
+    t.string "code", null: false
     t.string "base_url"
-    t.boolean "subject", default: false
-    t.boolean "genre", default: false
-    t.boolean "name", default: false
-    t.boolean "geographic", default: false
+    t.boolean "subjects", default: false
+    t.boolean "genres", default: false
+    t.boolean "names", default: false
+    t.boolean "geographics", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

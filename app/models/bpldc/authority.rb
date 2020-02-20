@@ -1,8 +1,10 @@
-class Bpldc::Authority < ApplicationRecord
-  validates :label, presence: true
+# frozen_string_literal: true
 
-  scope :subjects, -> { where(subject: true) }
-  scope :names, -> { where(name: true) }
-  scope :genres, -> { where(genre: true) }
-  scope :geographics, -> { where(geographic: true) }
+class Bpldc::Authority < ApplicationRecord
+  validates :code, presence: true, uniqueness: true
+
+  scope :subjects, -> { where(subjects: true) }
+  scope :names, -> { where(names: true) }
+  scope :genres, -> { where(genres: true) }
+  scope :geographics, -> { where(geographics: true) }
 end

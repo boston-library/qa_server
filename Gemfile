@@ -30,6 +30,7 @@ group :development, :integration, :test do
   gem 'coveralls', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 4.4', require: false
+  gem 'shoulda-matchers', '~> 4.1'
   gem 'faker'
   gem 'listen'
   gem 'rails-controller-testing'
