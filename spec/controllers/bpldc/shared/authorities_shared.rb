@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+RSpec.shared_examples 'authorities_index_shared' do
+  describe 'index_actions' do
+    it "assigns @authorities" do
+      #get :index
+      expect(assigns(:authorities)).to_not be_falsey
+    end
+
+    it "renders the response" do
+      #get :index
+      expect(response.status).to eq(200)
+      expect(JSON.parse(response.body).length).to be > 1
+      expect(response.content_type).to eq('application/json')
+    end
+  end
+end

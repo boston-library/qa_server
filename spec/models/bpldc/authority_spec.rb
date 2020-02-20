@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Bpldc::Authority, type: :model do
+RSpec.describe Bpldc::Authority do
   subject { create(:bpldc_authority) }
 
-  describe 'Database' do
+  describe 'database' do
     it { is_expected.to have_db_column(:name).of_type(:string) }
     it { is_expected.to have_db_column(:code).of_type(:string).with_options(null: false) }
     it { is_expected.to have_db_column(:base_url).of_type(:string) }
@@ -13,7 +13,7 @@ RSpec.describe Bpldc::Authority, type: :model do
     it { is_expected.to have_db_column(:geographics).of_type(:boolean) }
   end
 
-  describe 'Validations' do
+  describe 'validations' do
     it { is_expected.to validate_presence_of(:code) }
     it { is_expected.to validate_uniqueness_of(:code) }
   end

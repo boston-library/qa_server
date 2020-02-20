@@ -3,5 +3,12 @@ Rails.application.routes.draw do
   mount QaServer::Engine, at: '/'
   resources :welcome, only: 'index'
   root 'qa_server/homepage#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :bpldc do
+    get 'authorities', to: 'authorities#index'
+    get 'authorities/subjects', to: 'authorities#subjects'
+    get 'authorities/genres', to: 'authorities#genres'
+    get 'authorities/names', to: 'authorities#names'
+    get 'authorities/geographics', to: 'authorities#geographics'
+  end
 end
