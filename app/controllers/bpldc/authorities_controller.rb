@@ -5,31 +5,37 @@ module Bpldc
     # GET /bpldc/authorities
     def index
       @authorities = Bpldc::Authority.all
-      render json: @authorities
+      render json: public_attributes
     end
 
     # GET /bpldc/authorities/subjects
     def subjects
       @authorities = Bpldc::Authority.subjects
-      render json: @authorities
+      render json: public_attributes
     end
 
     # GET /bpldc/authorities/subjects
     def genres
       @authorities = Bpldc::Authority.genres
-      render json: @authorities
+      render json: public_attributes
     end
 
     # GET /bpldc/authorities/subjects
     def names
       @authorities = Bpldc::Authority.names
-      render json: @authorities
+      render json: public_attributes
     end
 
     # GET /bpldc/authorities/subjects
     def geographics
       @authorities = Bpldc::Authority.geographics
-      render json: @authorities
+      render json: public_attributes
+    end
+
+    private
+
+    def public_attributes
+      @authorities.map { |rec| rec.slice(:code, :name, :base_url).compact }
     end
   end
 end
