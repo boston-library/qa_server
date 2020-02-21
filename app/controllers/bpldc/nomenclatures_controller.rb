@@ -7,5 +7,11 @@ module Bpldc
       @objects = Bpldc::ResourceType.all_for_api
       render json: @objects
     end
+
+    # GET /bpldc/roles
+    def roles
+      @objects = Bpldc::Role.all_for_api
+      render json: @objects
+    end
   end
 end

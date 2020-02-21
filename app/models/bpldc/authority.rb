@@ -11,5 +11,6 @@ class Bpldc::Authority < ApplicationRecord
 
   with_options inverse_of: :authority, dependent: :destroy, foreign_key: :authority_id do
     has_many :resource_types, class_name: 'Bpldc::ResourceType'
+    has_many :roles, class_name: 'Bpldc::Role'
   end
 end
