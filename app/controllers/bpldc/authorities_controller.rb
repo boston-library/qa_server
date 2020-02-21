@@ -4,38 +4,38 @@ module Bpldc
   class AuthoritiesController < ApplicationController
     # GET /bpldc/authorities
     def index
-      @authorities = Bpldc::Authority.all
-      render json: public_attributes
+      @authorities = Bpldc::Authority.public_attributes.all
+      render json: results_for_api
     end
 
     # GET /bpldc/authorities/subjects
     def subjects
-      @authorities = Bpldc::Authority.subjects
-      render json: public_attributes
+      @authorities = Bpldc::Authority.public_attributes.subjects
+      render json: results_for_api
     end
 
     # GET /bpldc/authorities/subjects
     def genres
-      @authorities = Bpldc::Authority.genres
-      render json: public_attributes
+      @authorities = Bpldc::Authority.public_attributes.genres
+      render json: results_for_api
     end
 
     # GET /bpldc/authorities/subjects
     def names
-      @authorities = Bpldc::Authority.names
-      render json: public_attributes
+      @authorities = Bpldc::Authority.public_attributes.names
+      render json: results_for_api
     end
 
     # GET /bpldc/authorities/subjects
     def geographics
-      @authorities = Bpldc::Authority.geographics
-      render json: public_attributes
+      @authorities = Bpldc::Authority.public_attributes.geographics
+      render json: results_for_api
     end
 
     private
 
-    def public_attributes
-      @authorities.map { |rec| rec.slice(:code, :name, :base_url).compact }
+    def results_for_api
+      @authorities.map { |rec| rec.as_json.compact }
     end
   end
 end

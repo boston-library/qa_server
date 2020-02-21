@@ -11,6 +11,11 @@ RSpec.describe Bpldc::Authority do
     it { is_expected.to have_db_column(:genres).of_type(:boolean) }
     it { is_expected.to have_db_column(:names).of_type(:boolean) }
     it { is_expected.to have_db_column(:geographics).of_type(:boolean) }
+
+    it { is_expected.to have_db_index(:subjects) }
+    it { is_expected.to have_db_index(:genres) }
+    it { is_expected.to have_db_index(:names) }
+    it { is_expected.to have_db_index(:geographics) }
   end
 
   describe 'validations' do

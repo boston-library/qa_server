@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200220173340) do
+ActiveRecord::Schema.define(version: 20200221164459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,10 @@ ActiveRecord::Schema.define(version: 20200220173340) do
     t.boolean "geographics", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["genres"], name: "index_bpldc_authorities_on_genres"
+    t.index ["geographics"], name: "index_bpldc_authorities_on_geographics"
+    t.index ["names"], name: "index_bpldc_authorities_on_names"
+    t.index ["subjects"], name: "index_bpldc_authorities_on_subjects"
   end
 
   create_table "performance_history", force: :cascade do |t|
@@ -64,4 +68,5 @@ ActiveRecord::Schema.define(version: 20200220173340) do
     t.datetime "dt_stamp"
   end
 
+  add_foreign_key "bpldc_nomenclatures", "bpldc_authorities", column: "authority_id", on_delete: :nullify
 end

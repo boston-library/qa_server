@@ -2,7 +2,7 @@
 
 AUTHORITY_INPUTS = [
     { code: 'aat', base_url: 'http://vocab.getty.edu/aat',
-      name: 'Art and Architecture Thesaurus ', subjects: true, genres: true },
+      name: 'Art and Architecture Thesaurus', subjects: true, genres: true },
     { code: 'geonames', base_url: 'http://sws.geonames.org',
       name: 'GeoNames', geographics: true },
     { code: 'gmgpc', base_url: 'http://id.loc.gov/vocabulary/graphicMaterials',
