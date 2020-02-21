@@ -22,4 +22,37 @@ RSpec.describe Bpldc::Authority do
     it { is_expected.to validate_presence_of(:code) }
     it { is_expected.to validate_uniqueness_of(:code) }
   end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:resource_types).
+        inverse_of(:authority).
+        class_name('Bpldc::ResourceType').
+        with_foreign_key(:authority_id).
+        dependent(:destroy) }
+=begin
+    it { is_expected.to have_many(:genres).
+        inverse_of(assoc_options[:inverse_of]).
+        class_name('Curator::ControlledTerms::Genre').
+        with_foreign_key(assoc_options[:foreign_key]).
+        dependent(assoc_options[:dependent]) }
+
+    it { is_expected.to have_many(:languages).
+        inverse_of(assoc_options[:inverse_of]).
+        class_name('Curator::ControlledTerms::Language').
+        with_foreign_key(assoc_options[:foreign_key]).
+        dependent(assoc_options[:dependent]) }
+
+    it { is_expected.to have_many(:licenses).
+        inverse_of(assoc_options[:inverse_of]).
+        class_name('Curator::ControlledTerms::License').
+        with_foreign_key(assoc_options[:foreign_key]).
+        dependent(assoc_options[:dependent]) }
+
+    it { is_expected.to have_many(:roles).
+        inverse_of(assoc_options[:inverse_of]).
+        class_name('Curator::ControlledTerms::Role').
+        with_foreign_key(assoc_options[:foreign_key]).
+        dependent(assoc_options[:dependent]) }
+=end
+  end
 end

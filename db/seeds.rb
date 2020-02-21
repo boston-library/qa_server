@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+### AUTHORITIES ###
 AUTHORITY_INPUTS = [
     { code: 'aat', base_url: 'http://vocab.getty.edu/aat',
       name: 'Art and Architecture Thesaurus', subjects: true, genres: true },
@@ -52,6 +53,31 @@ AUTHORITY_INPUTS.each do |auth_input|
     rescue StandardError => e
       puts "Failed to seed Authority Record with the following input #{auth_input.inspect}"
       puts e.inspect
+    end
+  end
+end
+
+### RESOURCE TYPES ###
+puts "Seeding ResourceType values"
+lc_url = "http://id.loc.gov/vocabulary/resourceTypes.json"
+lc_response = Faraday.get(lc_url)
+lc_data = lc_response.status == 200 ? JSON.parse(lc_response.body) : nil
+if lc_data
+  authority = Bpldc::Authority.where(code: 'marcrelator').first
+  ids_to_ignore = %w(resourceTypes unk)
+  lc_data.each do |lc_data_hash|
+    Bpldc::ResourceType.transaction do
+      begin
+        auth_input = {authority_id: authority.id}
+        id_from_auth = lc_data_hash['@id'].split('/').last
+        next if ids_to_ignore.include?(id_from_auth)
+        auth_input[:id_from_auth] = id_from_auth
+        auth_input[:label] = lc_data_hash['http://www.w3.org/2004/02/skos/core#prefLabel'].first['@value']
+        Bpldc::ResourceType.where(auth_input).first_or_create!
+      rescue StandardError => e
+        puts "Failed to seed ResourceType with the following input #{auth_input.inspect}"
+        puts e.inspect
+      end
     end
   end
 end

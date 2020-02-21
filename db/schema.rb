@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20200221164459) do
     t.index ["subjects"], name: "index_bpldc_authorities_on_subjects"
   end
 
+  create_table "bpldc_nomenclatures", force: :cascade do |t|
+    t.string "label", null: false
+    t.string "id_from_auth", null: false
+    t.string "type", null: false
+    t.bigint "authority_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authority_id"], name: "index_bpldc_nomenclatures_on_authority_id"
+    t.index ["type"], name: "index_bpldc_nomenclatures_on_type"
+  end
+
   create_table "performance_history", force: :cascade do |t|
     t.datetime "dt_stamp"
     t.string "authority"

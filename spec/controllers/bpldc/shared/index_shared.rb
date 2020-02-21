@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples 'authorities_index_shared' do
+RSpec.shared_examples 'bpldc_index_shared' do
   describe 'index_actions' do
-    it "assigns @authorities" do
-      expect(assigns(:authorities)).to_not be_falsey
+    it "assigns @objects" do
+      expect(assigns(:objects)).to_not be_falsey
     end
 
     it "renders the response" do

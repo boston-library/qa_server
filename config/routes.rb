@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     get 'authorities/genres', to: 'authorities#genres'
     get 'authorities/names', to: 'authorities#names'
     get 'authorities/geographics', to: 'authorities#geographics'
+    get 'resource_types', to: 'nomenclatures#resource_types'
   end
 end

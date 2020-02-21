@@ -8,4 +8,8 @@ class Bpldc::Authority < ApplicationRecord
   scope :names, -> { where(names: true) }
   scope :genres, -> { where(genres: true) }
   scope :geographics, -> { where(geographics: true) }
+
+  with_options inverse_of: :authority, dependent: :destroy, foreign_key: :authority_id do
+    has_many :resource_types, class_name: 'Bpldc::ResourceType'
+  end
 end
