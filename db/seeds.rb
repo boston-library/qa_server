@@ -45,13 +45,39 @@ AUTHORITY_INPUTS = [
       name: 'Getty Union List of Artist Names', subjects: true, names: true }
 ].freeze
 
+puts "Seeding Bpldc::Authority values"
 AUTHORITY_INPUTS.each do |auth_input|
   Bpldc::Authority.transaction do
     begin
-      puts "Seeding authority with attributes #{auth_input.inspect}"
       Bpldc::Authority.where(auth_input).first_or_create!
     rescue StandardError => e
-      puts "Failed to seed Authority Record with the following input #{auth_input.inspect}"
+      puts "Failed to seed Bpldc::Authority with the following input #{auth_input.inspect}"
+      puts e.inspect
+    end
+  end
+end
+
+### LICENSES ###
+LICENSE_INPUTS = [
+    { label: 'No known restrictions on use.'},
+    { label: 'This work is in the public domain under a Creative Commons No Rights Reserved License (CC0).' },
+    { label: 'This work is licensed for use under a Creative Commons Attribution License (CC BY).', uri: 'https://creativecommons.org/licenses/by/4.0' },
+    { label: 'This work is licensed for use under a Creative Commons Attribution Share Alike License (CC BY-SA).', uri: 'https://creativecommons.org/licenses/by-sa/4.0' },
+    { label: 'This work is licensed for use under a Creative Commons Attribution No Derivatives License (CC BY-ND).', uri: 'https://creativecommons.org/licenses/by-nd/4.0' },
+    { label: 'This work is licensed for use under a Creative Commons Attribution Non-Commercial License (CC BY-NC).', uri: 'https://creativecommons.org/licenses/by-nc/4.0' },
+    { label: 'This work is licensed for use under a Creative Commons Attribution Non-Commercial Share Alike License (CC BY-NC-SA).', uri: 'https://creativecommons.org/licenses/by-nc-sa/4.0' },
+    { label: 'This work is licensed for use under a Creative Commons Attribution Non-Commercial No Derivatives License (CC BY-NC-ND).', uri: 'https://creativecommons.org/licenses/by-nc-nd/4.0' },
+    { label: 'All rights reserved.' },
+    { label: 'Contact host institution for more information.' }
+].freeze
+
+puts "Seeding Bpldc::License values"
+LICENSE_INPUTS.each do |license_input|
+  Bpldc::License.transaction do
+    begin
+      Bpldc::License.where(license_input).first_or_create!
+    rescue StandardError => e
+      puts "Failed to seed Bpldc::License for the following input #{license_input.inspect}"
       puts e.inspect
     end
   end

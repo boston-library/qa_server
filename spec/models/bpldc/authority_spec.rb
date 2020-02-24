@@ -35,16 +35,16 @@ RSpec.describe Bpldc::Authority do
         class_name('Bpldc::Role').
         with_foreign_key(:authority_id).
         dependent(:destroy) }
+
+    it { is_expected.to have_many(:languages).
+        inverse_of(:authority).
+        class_name('Bpldc::Language').
+        with_foreign_key(:authority_id).
+        dependent(:destroy) }
 =begin
     it { is_expected.to have_many(:genres).
         inverse_of(assoc_options[:inverse_of]).
         class_name('Curator::ControlledTerms::Genre').
-        with_foreign_key(assoc_options[:foreign_key]).
-        dependent(assoc_options[:dependent]) }
-
-    it { is_expected.to have_many(:languages).
-        inverse_of(assoc_options[:inverse_of]).
-        class_name('Curator::ControlledTerms::Language').
         with_foreign_key(assoc_options[:foreign_key]).
         dependent(assoc_options[:dependent]) }
 

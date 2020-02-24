@@ -31,6 +31,8 @@ RSpec.shared_examples 'nomenclature', type: :model do
       expect(all_for_api_record['id_from_auth']).to_not be_blank
       expect(all_for_api_record['label']).to_not be_blank
       expect(all_for_api_record['authority_code']).to_not be_blank
+      expect(all_for_api_record['id']).to be_blank
+      expect(all_for_api_record['created_at']).to be_blank
     end
   end
 end
