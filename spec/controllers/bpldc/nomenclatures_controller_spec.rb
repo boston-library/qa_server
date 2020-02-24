@@ -11,4 +11,9 @@ RSpec.describe Bpldc::NomenclaturesController do
     before(:each) { get :roles }
     it_behaves_like 'bpldc_index_shared'
   end
+
+  describe 'GET languages' do
+    before(:each) { get :languages }
+    it_behaves_like 'bpldc_index_shared'
+  end
 end

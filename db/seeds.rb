@@ -59,9 +59,13 @@ end
 
 ### RESOURCE TYPES ###
 Bpldc::Nomenclature.seed_lc_data(bpldc_class: 'Bpldc::ResourceType', lc_url_suffix: 'resourceTypes.json',
-                                 ids_to_ignore: %w(unk resourceTypes), auth_code: 'resourceTypes')
+                                 skip: %w(unk resourceTypes), auth_code: 'resourceTypes')
 
 ### ROLES ###
 Bpldc::Nomenclature.seed_lc_data(bpldc_class: 'Bpldc::Role', lc_url_suffix: 'relators.json',
-                                 ids_to_ignore: ['relators'], auth_code: 'marcrelator')
+                                 skip: ['relators'], auth_code: 'marcrelator')
+
+### LANGUAGES ###
+Bpldc::Nomenclature.seed_lc_data(bpldc_class: 'Bpldc::Language', lc_url_suffix: 'iso639-2.json',
+                                 skip: %w(iso639-2 zxx qaa-qtz mis mul und), auth_code: 'iso639-2')
 

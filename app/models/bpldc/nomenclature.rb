@@ -17,7 +17,7 @@ class Bpldc::Nomenclature < ApplicationRecord
     end
   end
 
-  def self.seed_lc_data(bpldc_class: '', lc_url_suffix: '', ids_to_ignore: [], auth_code: nil)
+  def self.seed_lc_data(bpldc_class: '', lc_url_suffix: '', skip: [], auth_code: nil)
     return false if bpldc_class.nil? || lc_url_suffix.nil? || auth_code.nil?
     puts "Seeding #{bpldc_class} values"
     lc_url = "http://id.loc.gov/vocabulary/#{lc_url_suffix}"
@@ -29,10 +29,13 @@ class Bpldc::Nomenclature < ApplicationRecord
       bpldc_class.constantize.transaction do
         begin
           auth_input = {authority_id: authority.id}
-          id_from_auth = lc_data_hash['@id'].split('/').last
-          next if ids_to_ignore.include?(id_from_auth)
-          auth_input[:id_from_auth] = id_from_auth
-          auth_input[:label] = lc_data_hash['http://www.loc.gov/mads/rdf/v1#authoritativeLabel'].first['@value']
+          auth_input[:id_from_auth] = lc_data_hash['@id']&.split('/').last
+          next if skip.include?(auth_input[:id_from_auth])
+          auth_labels = lc_data_hash['http://www.loc.gov/mads/rdf/v1#authoritativeLabel']
+          auth_labels.each do |auth_label|
+            next unless auth_label['@language'] == 'en' || auth_labels.count == 1
+            auth_input[:label] = auth_label['@value']&.strip
+          end
           bpldc_class.constantize.where(auth_input).first_or_create!
         rescue StandardError => e
           puts "Failed to seed #{bpldc_class} with the following input #{auth_input.inspect}"

@@ -13,5 +13,11 @@ module Bpldc
       @objects = Bpldc::Role.all_for_api
       render json: @objects
     end
+
+    # GET /bpldc/languages
+    def languages
+      @objects = Bpldc::Language.all_for_api
+      render json: @objects
+    end
   end
 end

@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     get 'authorities/geographics', to: 'authorities#geographics'
     get 'resource_types', to: 'nomenclatures#resource_types'
     get 'roles', to: 'nomenclatures#roles'
+    get 'languages', to: 'nomenclatures#languages'
   end
 end
