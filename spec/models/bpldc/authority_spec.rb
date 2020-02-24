@@ -41,18 +41,11 @@ RSpec.describe Bpldc::Authority do
         class_name('Bpldc::Language').
         with_foreign_key(:authority_id).
         dependent(:destroy) }
-=begin
-    it { is_expected.to have_many(:genres).
-        inverse_of(assoc_options[:inverse_of]).
-        class_name('Curator::ControlledTerms::Genre').
-        with_foreign_key(assoc_options[:foreign_key]).
-        dependent(assoc_options[:dependent]) }
 
-    it { is_expected.to have_many(:licenses).
-        inverse_of(assoc_options[:inverse_of]).
-        class_name('Curator::ControlledTerms::License').
-        with_foreign_key(assoc_options[:foreign_key]).
-        dependent(assoc_options[:dependent]) }
-=end
+    it { is_expected.to have_many(:basic_genres).
+        inverse_of(:authority).
+        class_name('Bpldc::BasicGenre').
+        with_foreign_key(:authority_id).
+        dependent(:destroy) }
   end
 end

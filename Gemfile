@@ -51,6 +51,8 @@ group :test do
   gem 'rspec-rails'
   gem 'rspec-activemodel-mocks'
   gem 'sqlite3'
+  gem 'vcr', '~> 5.0.0'
+  gem 'webmock', '~> 3.7.6'
 end
 
 gem 'swagger-docs'

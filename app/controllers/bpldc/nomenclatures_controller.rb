@@ -19,5 +19,11 @@ module Bpldc
       @objects = Bpldc::Language.all_for_api
       render json: @objects
     end
+
+    # GET /bpldc/basic_genres
+    def basic_genres
+      @objects = Bpldc::BasicGenre.all_for_api
+      render json: @objects
+    end
   end
 end

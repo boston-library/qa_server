@@ -3,7 +3,7 @@
 RSpec.shared_examples 'nomenclature', type: :model do
   it { is_expected.to be_a_kind_of(Bpldc::Nomenclature) }
 
-  describe 'Database' do
+  describe 'database' do
     it { is_expected.to have_db_column(:label).of_type(:string).with_options(null: false) }
     it { is_expected.to have_db_column(:id_from_auth).of_type(:string).with_options(null: false) }
     it { is_expected.to have_db_column(:type).of_type(:string).with_options(null: false) }
@@ -13,7 +13,7 @@ RSpec.shared_examples 'nomenclature', type: :model do
     it { is_expected.to have_db_index(:type) }
   end
 
-  describe 'Validations' do
+  describe 'validations' do
     it { is_expected.to validate_presence_of(:label) }
     it { is_expected.to validate_presence_of(:id_from_auth) }
     it { is_expected.to validate_presence_of(:type) }

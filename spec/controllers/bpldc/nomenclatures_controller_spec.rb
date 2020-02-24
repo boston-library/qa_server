@@ -2,18 +2,10 @@
 
 require_relative './shared/index_shared'
 RSpec.describe Bpldc::NomenclaturesController do
-  describe 'GET resource_types' do
-    before(:each) { get :resource_types }
-    it_behaves_like 'bpldc_index_shared'
-  end
-
-  describe 'GET roles' do
-    before(:each) { get :roles }
-    it_behaves_like 'bpldc_index_shared'
-  end
-
-  describe 'GET languages' do
-    before(:each) { get :languages }
-    it_behaves_like 'bpldc_index_shared'
+  describe 'GET various nomenclature routes' do
+    %i[resource_types roles languages basic_genres].each do |nomenclature_route|
+      before(:each) { get nomenclature_route }
+      it_behaves_like 'bpldc_index_shared'
+    end
   end
 end

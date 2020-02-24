@@ -17,15 +17,15 @@ class Bpldc::Nomenclature < ApplicationRecord
     end
   end
 
-  def self.seed_lc_data(bpldc_class: '', lc_url_suffix: '', skip: [], auth_code: nil)
-    return false if bpldc_class.nil? || lc_url_suffix.nil? || auth_code.nil?
+  def self.seed_lc_data(bpldc_class: '', lc_url: '', skip: [], auth_code: nil)
+    return false if bpldc_class.nil? || lc_url.nil? || auth_code.nil?
     puts "Seeding #{bpldc_class} values"
-    lc_url = "http://id.loc.gov/vocabulary/#{lc_url_suffix}"
     lc_response = Faraday.get(lc_url)
     lc_data = lc_response.status == 200 ? JSON.parse(lc_response.body) : nil
     return false unless lc_data
     authority = Bpldc::Authority.where(code: auth_code).first
     lc_data.each do |lc_data_hash|
+      next unless lc_data_hash['@type'].include?('http://www.loc.gov/mads/rdf/v1#Authority')
       bpldc_class.constantize.transaction do
         begin
           auth_input = {authority_id: authority.id}

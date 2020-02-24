@@ -13,5 +13,6 @@ class Bpldc::Authority < ApplicationRecord
     has_many :resource_types, class_name: 'Bpldc::ResourceType'
     has_many :roles, class_name: 'Bpldc::Role'
     has_many :languages, class_name: 'Bpldc::Language'
+    has_many :basic_genres, class_name: 'Bpldc::BasicGenre'
   end
 end

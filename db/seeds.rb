@@ -83,15 +83,35 @@ LICENSE_INPUTS.each do |license_input|
   end
 end
 
+### BASIC GENRES ###
+BASIC_GENRE_INPUTS = {
+  'gmgpc' => %w(tgm001686 tgm003185 tgm003279 tgm003634 tgm012286 tgm006261 tgm007393
+                tgm007721 tgm008104 tgm008237 tgm007641 tgm001221 tgm000229),
+  'lctgm' => %w(tgm002590 tgm007159 tgm007068 tgm009874 tgm006804 tgm006926 tgm006906),
+  'lcgft' => %w(gf2014026174)
+}.freeze
+
+BASIC_GENRE_INPUTS.each do |auth_code, ids_from_auth|
+  ids_from_auth.each do |id_from_auth|
+    lc_vocab_path = auth_code == 'lcgft' ? "authorities/genreForms" : "vocabulary/graphicMaterials"
+    Bpldc::Nomenclature.seed_lc_data(bpldc_class: 'Bpldc::BasicGenre',
+                                     lc_url: "http://id.loc.gov/#{lc_vocab_path}/#{id_from_auth}.madsrdf.json",
+                                     auth_code: auth_code)
+  end
+end
+
 ### RESOURCE TYPES ###
-Bpldc::Nomenclature.seed_lc_data(bpldc_class: 'Bpldc::ResourceType', lc_url_suffix: 'resourceTypes.json',
+Bpldc::Nomenclature.seed_lc_data(bpldc_class: 'Bpldc::ResourceType',
+                                 lc_url: 'http://id.loc.gov/vocabulary/resourceTypes.json',
                                  skip: %w(unk resourceTypes), auth_code: 'resourceTypes')
 
 ### ROLES ###
-Bpldc::Nomenclature.seed_lc_data(bpldc_class: 'Bpldc::Role', lc_url_suffix: 'relators.json',
+Bpldc::Nomenclature.seed_lc_data(bpldc_class: 'Bpldc::Role',
+                                 lc_url: 'http://id.loc.gov/vocabulary/relators.json',
                                  skip: ['relators'], auth_code: 'marcrelator')
 
 ### LANGUAGES ###
-Bpldc::Nomenclature.seed_lc_data(bpldc_class: 'Bpldc::Language', lc_url_suffix: 'iso639-2.json',
+Bpldc::Nomenclature.seed_lc_data(bpldc_class: 'Bpldc::Language',
+                                 lc_url: 'http://id.loc.gov/vocabulary/iso639-2.json',
                                  skip: %w(iso639-2 zxx qaa-qtz mis mul und), auth_code: 'iso639-2')
 

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'resource_types', to: 'nomenclatures#resource_types'
     get 'roles', to: 'nomenclatures#roles'
     get 'languages', to: 'nomenclatures#languages'
+    get 'basic_genres', to: 'nomenclatures#basic_genres'
     get 'licenses', to: 'licenses#index'
   end
 end

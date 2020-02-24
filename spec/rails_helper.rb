@@ -18,6 +18,13 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+require 'vcr'
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/vcr'
+  c.configure_rspec_metadata!
+  c.hook_into :webmock
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -57,11 +64,9 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning do
       FactoryBot.lint
     end
-    Rails.application.load_seed
-    #VCR.use_cassette('load_seeds') do
-    #  Curator::Engine.load_seed
-    #end
-    #WebMock.reset!
+    VCR.use_cassette('load_seeds') do
+      Rails.application.load_seed
+    end
   end
 
   config.before(:each) do

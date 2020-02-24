@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20200224171825) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bpldc_authorities", force: :cascade do |t|
     t.string "name"
     t.string "code", null: false
@@ -83,4 +86,5 @@ ActiveRecord::Schema.define(version: 20200224171825) do
     t.datetime "dt_stamp"
   end
 
+  add_foreign_key "bpldc_nomenclatures", "bpldc_authorities", column: "authority_id", on_delete: :nullify
 end
