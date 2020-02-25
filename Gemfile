@@ -14,6 +14,8 @@ gem 'qa_server', '~> 6.2'
 gem 'qa', '~> 5.3'
 gem 'linkeddata'
 
+gem 'geomash', github: 'samvera-labs/geomash', branch: 'specs-working'
+
 # Other gems
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
