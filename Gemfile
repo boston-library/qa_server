@@ -18,7 +18,7 @@ gem 'linkeddata'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'lograge'
-gem 'mysql2'
+gem 'pg'
 gem 'puma', '~> 4.3'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
@@ -30,6 +30,7 @@ group :development, :integration, :test do
   gem 'coveralls', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 4.4', require: false
+  gem 'shoulda-matchers', '~> 4.1'
   gem 'faker'
   gem 'listen'
   gem 'rails-controller-testing'
@@ -50,6 +51,8 @@ group :test do
   gem 'rspec-rails'
   gem 'rspec-activemodel-mocks'
   gem 'sqlite3'
+  gem 'vcr', '~> 5.0.0'
+  gem 'webmock', '~> 3.7.6'
 end
 
 gem 'swagger-docs'

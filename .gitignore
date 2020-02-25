@@ -68,3 +68,6 @@ reports
 
 # Ignore generated gruff graphs
 app/assets/images/qa_server/charts/*.png
+
+# Ignore all RubyMine temp files
+.idea/
