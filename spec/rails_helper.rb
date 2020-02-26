@@ -23,6 +23,7 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr'
   c.configure_rspec_metadata!
   c.hook_into :webmock
+  c.allow_http_connections_when_no_cassette = true
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './shared/index_shared'
+require_relative '../shared/index_shared'
 RSpec.describe Bpldc::AuthoritiesController do
   describe 'GET various authorities routes' do
     %i[index subjects genres names geographics].each do |authorities_route|

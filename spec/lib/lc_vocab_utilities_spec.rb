@@ -11,7 +11,7 @@ RSpec.describe Bpldc::LcVocabUtilities::LcVocabFetcher do
                                        auth_code: 'lctgm')
         end.to change { Bpldc::BasicGenre.count }.by(1)
       end
-      expect(Bpldc::BasicGenre.find_by(id_from_auth: id_from_auth)).to_not be_blank
+      expect(Bpldc::BasicGenre.find_by(id_from_auth: id_from_auth)).not_to be_blank
     end
   end
 end
